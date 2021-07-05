@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity
-        implements ProfileFragment.Controller, ProfileListFragment.Controller {
+        implements NoteFragment.Controller, NoteListFragment.Controller {
     private static final String TAG = "@@@ AppCompatActivity";
 
     @Override
@@ -18,21 +18,21 @@ public class MainActivity extends AppCompatActivity
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container, new ProfileListFragment())
+                .add(R.id.container, new NoteListFragment())
                 .commit();
     }
 
     @Override
-    public void saveResult(DossierEntity dossier) {
+    public void saveResult(NoteEntity dossier) {
         //todo
     }
 
     @Override
-    public void openProfileScreen(DossierEntity dossier) {
+    public void openNoteScreen(NoteEntity note) {
         boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(isLandscape ? R.id.detail_container : R.id.container, ProfileFragment.newInstance(dossier))
+                .add(isLandscape ? R.id.detail_container : R.id.container, NoteFragment.newInstance(note))
                 .addToBackStack(null)
                 .commit();
     }

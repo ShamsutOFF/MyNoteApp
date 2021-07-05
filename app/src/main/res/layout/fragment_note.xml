@@ -9,36 +9,37 @@
     tools:showIn=".MainActivity">
 
     <EditText
-        android:id="@+id/surname_edit_text"
+        android:id="@+id/date_of_creation_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Фамилия"
+        android:hint="@string/date_of_creation_hint"
+        android:inputType="date"
         android:singleLine="true"
-        android:textSize="38sp"
+        android:textSize="@dimen/heading_fields_text_size"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/name_edit_text"
+        android:id="@+id/title_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Имя"
+        android:hint="@string/title_hint"
         android:singleLine="true"
-        android:textSize="38sp"
+        android:textSize="@dimen/heading_fields_text_size"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/email_edit_text"
+        android:id="@+id/content_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="E-mail"
-        android:singleLine="true"
-        android:textSize="38sp"
+        android:hint="@string/content_hint"
+        android:singleLine="false"
+        android:textSize="@dimen/content_fields_text_size"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/save_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Сохранить" />
+        android:text="@string/save_button_text" />
 
 </LinearLayout>
