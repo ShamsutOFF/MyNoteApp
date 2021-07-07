@@ -13,36 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:text="Заметка:"
+        android:text="Настройки:"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/date_of_creation_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/date_of_creation_hint"
-        android:inputType="date"
         android:singleLine="true"
-        android:textSize="@dimen/heading_fields_text_size"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/title_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/title_hint"
-        android:singleLine="true"
-        android:textSize="@dimen/heading_fields_text_size"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/content_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/content_hint"
-        android:singleLine="false"
-        android:textSize="@dimen/content_fields_text_size"
+        android:text="Здесь будут настройки"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
