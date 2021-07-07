@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_200"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:showIn=".MainActivity">
+
+    <EditText
+        android:id="@+id/date_of_creation_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/date_of_creation_hint"
+        android:inputType="date"
+        android:singleLine="true"
+        android:textSize="@dimen/heading_fields_text_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/title_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title_hint"
+        android:singleLine="true"
+        android:textSize="@dimen/heading_fields_text_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/content_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/content_hint"
+        android:singleLine="false"
+        android:textSize="@dimen/content_fields_text_size"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_button_text" />
+
+</LinearLayout>
