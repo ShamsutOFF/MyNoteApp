@@ -41,7 +41,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/main_container"
+        android:id="@+id/recycler_main_view_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5" />

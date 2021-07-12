@@ -13,6 +13,14 @@ public class NoteEntity implements Parcelable {
         return title + " от " + dateOfCreation;
     }
 
+    public String getDate() {
+        return dateOfCreation;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
     public NoteEntity(String title, String dateOfCreation, String content) {
         this.title = title;
         this.dateOfCreation = dateOfCreation;
