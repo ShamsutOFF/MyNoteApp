@@ -7,16 +7,16 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_main_view_container"
+    <FrameLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/grey"
+        android:gravity="center"
+        android:orientation="vertical"
         android:padding="6dp"
-        tools:context=".MainActivity"
-        tools:itemCount="10"
-        tools:listitem="@layout/note_item" />
+        tools:context=".MainActivity" />
 
     <LinearLayout
         android:id="@+id/menu_container"

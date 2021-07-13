@@ -32,7 +32,7 @@ public class NoteFragment extends Fragment {
     }
 
     public interface Controller {
-        void saveResult(NoteEntity dossier);
+        void saveResult(NoteEntity note);
     }
 
     @Override

@@ -9,18 +9,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class NoteListFragment extends Fragment {
-    private final NoteEntity note1 =
-            new NoteEntity("Купить помидоры", "03.07.21", "Нужно купить вкусные помидоры в Пятаке");
-    private final NoteEntity note2 =
-            new NoteEntity("Сходить на прогулку", "03.07.21", "Прогуляться вечерком");
-    private final NoteEntity note3 =
-            new NoteEntity("Сделать Домашку по программированию", "03.07.21", "Добить уже 6 урок. Тема сложная");
-    private final NoteEntity note4 =
-            new NoteEntity("Поработать", "03.07.21", "Натянуть потолки в понедельник и докрасить стены");
-    private final NoteEntity note5 =
-            new NoteEntity("Догнать группу", "03.07.21", "Нужно догнать и начать посещать онлайн вебинары");
+    private RecyclerView recyclerView;
+    private NoteAdapter adapter;
+    private NoteRepo repo;
 
     interface Controller {
         void openNoteScreen(NoteEntity note);
@@ -39,7 +34,16 @@ public class NoteListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_note_list, null);
+        View view = inflater.inflate(R.layout.fragment_note_list, container, false);
+
+        repo = new NoteArrayList();
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        adapter = new NoteAdapter();
+        adapter.setData(repo.getNotes());
+        recyclerView.setAdapter(adapter);
+        return view;
     }
 
     @Override
