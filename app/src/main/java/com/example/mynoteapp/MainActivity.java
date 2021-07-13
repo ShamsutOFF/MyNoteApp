@@ -1,5 +1,6 @@
 package com.example.mynoteapp;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -27,38 +28,32 @@ public class MainActivity extends AppCompatActivity {
         adapter = new NoteAdapter();
         adapter.setData(repo.getNotes());
         recyclerView.setAdapter(adapter);
-//        recyclerView.setAdapter(new NoteAdapter(repo));
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.recycler_main_view_container, new NoteListFragment())
-//                .commit();
-//
-//        findViewById(R.id.home_button).setOnClickListener(v -> {
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.recycler_main_view_container, new NoteListFragment())
-//                    .addToBackStack(null)
-//                    .commit();
-//        });
-//        boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-//        findViewById(R.id.add_button).setOnClickListener(v -> {
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(isLandscape ? R.id.detail_container : R.id.recycler_main_view_container, new AddNewNoteFragment())
-//                    .addToBackStack(null)
-//                    .commit();
-//        });
-//
-//        findViewById(R.id.settings_button).setOnClickListener(v -> {
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(isLandscape ? R.id.detail_container : R.id.recycler_main_view_container, new SettingsFragment())
-//                    .addToBackStack(null)
-//                    .commit();
-//        });
-//    }
+        findViewById(R.id.home_button).setOnClickListener(v -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.recycler_main_view_container, new NoteListFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+        boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        findViewById(R.id.add_button).setOnClickListener(v -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(isLandscape ? R.id.detail_container : R.id.recycler_main_view_container, new AddNewNoteFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+        findViewById(R.id.settings_button).setOnClickListener(v -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(isLandscape ? R.id.detail_container : R.id.recycler_main_view_container, new SettingsFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
+    }
 //
 //    @Override
 //    public void saveResult(NoteEntity dossier) {
@@ -73,5 +68,4 @@ public class MainActivity extends AppCompatActivity {
 //                .add(isLandscape ? R.id.detail_container : R.id.recycler_main_view_container, NoteFragment.newInstance(note))
 //                .addToBackStack(null)
 //                .commit();
-    }
 }

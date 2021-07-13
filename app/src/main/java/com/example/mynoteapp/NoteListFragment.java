@@ -54,10 +54,5 @@ public class NoteListFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         linearLayout = view.findViewById(R.id.linear);
 
-        addNoteToList(note1);
-        addNoteToList(note2);
-        addNoteToList(note3);
-        addNoteToList(note4);
-        addNoteToList(note5);
     }
 }
