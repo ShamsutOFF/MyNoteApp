@@ -5,4 +5,6 @@
     <string name="title_hint">Название</string>
     <string name="date_of_creation_hint">Дата Создания</string>
     <string name="save_button_text">Сохранить</string>
+    <string name="create_note_title">Новая заметка</string>
+    <string name="edit_note_title">Редактирование</string>
 </resources>

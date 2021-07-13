@@ -1,12 +1,14 @@
 package com.example.mynoteapp;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.UUID;
 
-public class NoteEntity implements Parcelable {
-    public String title;
-    public String dateOfCreation;
-    public String content;
+public class NoteEntity implements Serializable {
+    public final String id;
+    public final String title;
+    public final String dateOfCreation;
+    public final String content;
 
     @Override
     public String toString() {
@@ -21,39 +23,18 @@ public class NoteEntity implements Parcelable {
         return title;
     }
 
-    public NoteEntity(String title, String dateOfCreation, String content) {
+    public NoteEntity(String id, String title, String dateOfCreation, String content) {
+        this.id = id;
         this.title = title;
         this.dateOfCreation = dateOfCreation;
         this.content = content;
     }
 
-    protected NoteEntity(Parcel in) {
-        title = in.readString();
-        dateOfCreation = in.readString();
-        content = in.readString();
+    public static String generateNewId() {
+        return UUID.randomUUID().toString();
     }
 
-    public static final Creator<NoteEntity> CREATOR = new Creator<NoteEntity>() {
-        @Override
-        public NoteEntity createFromParcel(Parcel in) {
-            return new NoteEntity(in);
-        }
-
-        @Override
-        public NoteEntity[] newArray(int size) {
-            return new NoteEntity[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(dateOfCreation);
-        dest.writeString(content);
+    public static long getCurrentDate() {
+        return Calendar.getInstance().getTimeInMillis();
     }
 }

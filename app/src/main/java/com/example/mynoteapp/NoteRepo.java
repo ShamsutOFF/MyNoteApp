@@ -10,7 +10,7 @@ public interface NoteRepo {
 
     void updateNote(NoteEntity note);
 
-    void deleteNote(String title);
+    void deleteNote(String id);
 
     class NoteCreationException extends Throwable {
         public NoteCreationException(NoteEntity newNote) {
