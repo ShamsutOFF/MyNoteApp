@@ -10,5 +10,7 @@
     <color name="grey">#AFAFAF</color>
     <color name="grey_2">#7A7979</color>
     <color name="red">#FF0000</color>
+    <color name="brown">#FFF176</color>
+    <color name="brown_2">#FFD54F</color>
 
 </resources>

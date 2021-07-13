@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/grey"
+        android:background="@color/brown"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="6dp"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="9"
-        android:background="@color/grey_2"
+        android:background="@color/brown_2"
         android:gravity="center"
         android:orientation="horizontal"
         tools:context=".MainActivity">
