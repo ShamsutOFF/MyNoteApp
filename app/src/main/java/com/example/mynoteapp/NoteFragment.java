@@ -25,6 +25,7 @@ public class NoteFragment extends Fragment {
 
 
     public static NoteFragment newInstance(@Nullable NoteEntity noteEntity) {
+        Log.d(TAG, "newInstance() called with: noteEntity = [" + noteEntity + "]");
         NoteFragment noteFragment = new NoteFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(NOTE_ARGS_KEY, noteEntity);

@@ -2,7 +2,9 @@ package com.example.mynoteapp;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,14 +52,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         void onItemClick(NoteEntity note);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
         private final TextView titleTv;
         private final TextView dateTv;
         private final CardView cardView;
         private NoteEntity noteEntity;
+        private final RecyclerView recyclerView;
 
         public ViewHolder(ViewGroup parent, OnItemClickListener clickListener) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item, parent, false));
+            recyclerView = parent.findViewById(R.id.recycler_view);
             cardView = (CardView) itemView;
             titleTv = itemView.findViewById(R.id.note_item_title_text_view);
             dateTv = itemView.findViewById(R.id.note_item_date_text_view);
@@ -75,6 +79,33 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             this.noteEntity = noteEntity;
             titleTv.setText(noteEntity.getTitle());
             dateTv.setText(noteEntity.getDate());
+
+            itemView.setOnLongClickListener(v -> {
+                PopupMenu popupMenu = new PopupMenu(itemView.getContext(), itemView);
+                popupMenu.inflate(R.menu.note_item_menu);
+                popupMenu.setOnMenuItemClickListener(this);
+                popupMenu.show();
+                return true;
+            });
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            if (item.getItemId() == R.id.update_note_item_menu) {
+                onItemClickListener.onItemClick(noteEntity);
+            }
+            if (item.getItemId() == R.id.double_note_item_menu) {
+                data.add(new NoteEntity(NoteEntity.generateNewId(), noteEntity.title, noteEntity.dateOfCreation, noteEntity.content));
+                notifyDataSetChanged();
+                recyclerView.smoothScrollToPosition(data.size() - 1);
+            }
+            if (item.getItemId() == R.id.delete_note_item_menu) {
+                data.remove(noteEntity);
+                notifyDataSetChanged();
+
+            }
+
+            return true;
         }
     }
 }

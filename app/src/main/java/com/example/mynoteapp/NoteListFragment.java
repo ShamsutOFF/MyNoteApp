@@ -18,24 +18,37 @@ import java.util.List;
 public class NoteListFragment extends Fragment {
 
     private static final String TAG = "@@@ NoteListFragment";
+    public static final String NOTES_ARGS_KEY = "NOTE_ARGS_KEY";
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
     private NoteRepo repo;
-
     private LinearLayout linearLayout;
 
+    public static NoteListFragment newInstance(@Nullable NoteArrayList noteArrayList) {
+        Log.d(TAG, "newInstance() called with: noteEntity = [" + noteArrayList + "]");
+
+
+        NoteListFragment noteListFragment = new NoteListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(NOTES_ARGS_KEY, bundle.getParcelableArray(String.valueOf(noteArrayList)));
+        noteListFragment.setArguments(bundle);
+        return noteListFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
+
         View view = inflater.inflate(R.layout.fragment_note_list, container, false);
 
         repo = new NoteArrayList();
         recyclerView = view.findViewById(R.id.recycler_view);
 
+        setHasOptionsMenu(true);
 //        adapter.setData(repo.getNotes());
         return view;
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -43,6 +56,7 @@ public class NoteListFragment extends Fragment {
         linearLayout = view.findViewById(R.id.linear);
         adapter = new NoteAdapter();
         adapter.setOnItemClickListener(getContract()::editNote);
+        recyclerView.setHasFixedSize(true);             //Для промзводительности
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         renderList(repo.getNotes());

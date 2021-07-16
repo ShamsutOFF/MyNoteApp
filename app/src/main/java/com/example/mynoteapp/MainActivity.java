@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity implements NoteFragment.Cont
     private static final String NOTES_LIST_FRAGMENT_TAG = "NOTES_LIST_FRAGMENT_TAG";
     private static final String TAG = "@@@ MainActivity";
     private boolean isTwoPaneMode = false;
+    private final NoteArrayList noteArrayList = new NoteArrayList(); //
 
 
     @Override
@@ -42,11 +43,9 @@ public class MainActivity extends AppCompatActivity implements NoteFragment.Cont
                     .addToBackStack(null)
                     .commit();
         });
-
         findViewById(R.id.add_button).setOnClickListener(v -> {
             createNewNote();
         });
-
         findViewById(R.id.settings_button).setOnClickListener(v -> {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NoteFragment.Cont
         if (!isTwoPaneMode) {
             setTitle(note == null ? R.string.create_note_title : R.string.edit_note_title);
         }
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (!isTwoPaneMode) {
             transaction.addToBackStack(null);
