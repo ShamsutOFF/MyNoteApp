@@ -4,28 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/brown"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="16dp"
     tools:context=".MainActivity">
-
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/brown"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="6dp"
-        tools:context=".MainActivity" />
 
     <LinearLayout
         android:id="@+id/menu_container"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="9"
+        android:layout_weight="1"
         android:background="@color/brown_2"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:gravity="left"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
         <Button
@@ -48,4 +40,15 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
+
+    <FrameLayout
+        android:id="@+id/detail_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
 </LinearLayout>
