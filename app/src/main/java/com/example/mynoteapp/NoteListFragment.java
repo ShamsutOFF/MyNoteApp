@@ -24,31 +24,24 @@ public class NoteListFragment extends Fragment {
     private NoteRepo repo;
     private LinearLayout linearLayout;
 
-    public static NoteListFragment newInstance(@Nullable NoteArrayList noteArrayList) {
-        Log.d(TAG, "newInstance() called with: noteEntity = [" + noteArrayList + "]");
-
-
-        NoteListFragment noteListFragment = new NoteListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(NOTES_ARGS_KEY, bundle.getParcelableArray(String.valueOf(noteArrayList)));
-        noteListFragment.setArguments(bundle);
-        return noteListFragment;
-    }
+//    private Runnable runnable = () -> updateAllNotes();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
-
         View view = inflater.inflate(R.layout.fragment_note_list, container, false);
 
-        repo = new NoteArrayList();
         recyclerView = view.findViewById(R.id.recycler_view);
-
         setHasOptionsMenu(true);
 //        adapter.setData(repo.getNotes());
         return view;
     }
 
+    public void updateAllNotes() {
+        Log.d(TAG, "updateAllNotes() called");
+        adapter.setData(repo.getNotes());
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -59,13 +52,18 @@ public class NoteListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);             //Для промзводительности
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+        updateAllNotes();
         renderList(repo.getNotes());
-        adapter.setData(repo.getNotes());
+
+        repo.subscribe(() -> {
+            updateAllNotes();
+        });
     }
 
     @Override
     public void onAttach(Context context) {
         Log.d(TAG, "onAttach() called with: context = [" + context + "]");
+        repo = new FirebaseNotesRepo();
         super.onAttach(context);
         if (!(context instanceof Contract)) {
             throw new RuntimeException("Activity must implements Contract!");

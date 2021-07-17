@@ -5,10 +5,20 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class NoteEntity implements Serializable {
-    public final String id;
-    public final String title;
-    public final String dateOfCreation;
-    public final String content;
+    public String id;
+    public String title;
+    public String dateOfCreation;
+    public String content;
+
+    public NoteEntity() {
+    }
+
+    public NoteEntity(String id, String title, String dateOfCreation, String content) {
+        this.id = id;
+        this.title = title;
+        this.dateOfCreation = dateOfCreation;
+        this.content = content;
+    }
 
     @Override
     public String toString() {
@@ -21,13 +31,6 @@ public class NoteEntity implements Serializable {
 
     public String getTitle() {
         return title;
-    }
-
-    public NoteEntity(String id, String title, String dateOfCreation, String content) {
-        this.id = id;
-        this.title = title;
-        this.dateOfCreation = dateOfCreation;
-        this.content = content;
     }
 
     public static String generateNewId() {

@@ -103,6 +103,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 data.remove(noteEntity);
                 notifyDataSetChanged();
 
+
             }
 
             return true;

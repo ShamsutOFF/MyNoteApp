@@ -12,9 +12,14 @@ public interface NoteRepo {
 
     void deleteNote(String id);
 
+    void subscribe(Runnable subscriber);
+
+    void unSubscribe(Runnable subscriber);
+
     class NoteCreationException extends Throwable {
         public NoteCreationException(NoteEntity newNote) {
             super("Такая заметка уже есть = " + newNote.getTitle());
         }
     }
+
 }

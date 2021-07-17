@@ -12,8 +12,6 @@ public class MainActivity extends AppCompatActivity implements NoteFragment.Cont
     private static final String NOTES_LIST_FRAGMENT_TAG = "NOTES_LIST_FRAGMENT_TAG";
     private static final String TAG = "@@@ MainActivity";
     private boolean isTwoPaneMode = false;
-    private final NoteArrayList noteArrayList = new NoteArrayList(); //
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
