@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -18,6 +19,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private static final String TAG = "@@@ NoteAdapter";
     private List<NoteEntity> data;
     private OnItemClickListener onItemClickListener;
+    private NoteRepo repo;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
@@ -61,6 +63,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         public ViewHolder(ViewGroup parent, OnItemClickListener clickListener) {
             super(LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item, parent, false));
+            repo = new FirebaseNotesRepo();
             recyclerView = parent.findViewById(R.id.recycler_view);
             cardView = (CardView) itemView;
             titleTv = itemView.findViewById(R.id.note_item_title_text_view);
@@ -95,17 +98,19 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 onItemClickListener.onItemClick(noteEntity);
             }
             if (item.getItemId() == R.id.double_note_item_menu) {
-                data.add(new NoteEntity(NoteEntity.generateNewId(), noteEntity.title, noteEntity.dateOfCreation, noteEntity.content));
+                try {
+                    repo.createNote(new NoteEntity(NoteEntity.generateNewId(), noteEntity.title, noteEntity.dateOfCreation, noteEntity.content));
+                } catch (NoteRepo.NoteCreationException e) {
+                    e.printStackTrace();
+                }
                 notifyDataSetChanged();
                 recyclerView.smoothScrollToPosition(data.size() - 1);
             }
             if (item.getItemId() == R.id.delete_note_item_menu) {
-                data.remove(noteEntity);
+                Toast.makeText(itemView.getContext(), noteEntity.id, Toast.LENGTH_SHORT).show();
+                repo.deleteNote(noteEntity.id);
                 notifyDataSetChanged();
-
-
             }
-
             return true;
         }
     }

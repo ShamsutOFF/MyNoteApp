@@ -70,7 +70,7 @@ public class FirebaseNotesRepo implements NoteRepo {
     @Override
     public void createNote(NoteEntity note) throws NoteCreationException {
         Log.d(TAG, "createNote() called with: note = [" + note + "]");
-        db.collection(NOTES_TABLE_NAME).add(note);
+        db.collection(NOTES_TABLE_NAME).document(note.id).set(note);
     }
 
     @Override
@@ -96,8 +96,6 @@ public class FirebaseNotesRepo implements NoteRepo {
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-
-
     }
 
     @Override
