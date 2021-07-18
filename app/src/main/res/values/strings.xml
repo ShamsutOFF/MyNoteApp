@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">MyNoteApp</string>
+    <string name="app_name">ShamsutOFFsNoteApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_hint">Содержание</string>
+    <string name="title_hint">Название</string>
+    <string name="date_of_creation_hint">Дата Создания</string>
+    <string name="save_button_text">Сохранить</string>
+    <string name="create_note_title">Новая заметка</string>
+    <string name="edit_note_title">Редактирование</string>
+    <string name="alert_title">Внимание!</string>
+    <string name="alert_message">Уверены, что хотите удалить заметку?</string>
+    <string name="yes">да</string>
+    <string name="no">нет</string>
 </resources>
