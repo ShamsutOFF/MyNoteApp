@@ -1,5 +1,6 @@
 package com.example.mynoteapp;
 
+import android.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -107,11 +108,23 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 recyclerView.smoothScrollToPosition(data.size() - 1);
             }
             if (item.getItemId() == R.id.delete_note_item_menu) {
-                Toast.makeText(itemView.getContext(), noteEntity.id, Toast.LENGTH_SHORT).show();
-                repo.deleteNote(noteEntity.id);
-                notifyDataSetChanged();
+                showAlertDialog();
             }
             return true;
+        }
+
+        private void showAlertDialog() {
+            new AlertDialog.Builder(cardView.getContext())
+                    .setTitle(R.string.alert_title)
+                    .setMessage(R.string.alert_message)
+                    .setPositiveButton(R.string.yes, (d, i) -> {
+                        repo.deleteNote(noteEntity.id);
+                        notifyDataSetChanged();
+                    })
+                    .setNegativeButton(R.string.no, (d, i) -> {
+                        Toast.makeText(itemView.getContext(), "Вы отменили удаление", Toast.LENGTH_SHORT).show();
+                    })
+                    .show();
         }
     }
 }
